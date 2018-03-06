@@ -1,0 +1,40 @@
+Testsuite: cse417.AllTests
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.132 sec
+------------- Standard Error -----------------
+1 2 1
+1 3 1
+1 4 0
+2 1 0
+2 3 1
+2 4 0
+3 1 0
+3 2 0
+3 4 2
+4 1 2
+4 2 0
+4 3 0
+------------- ---------------- ---------------
+
+Testcase: testNoOptions took 0.003 sec
+Testcase: testAllOptionTypes took 0.001 sec
+Testcase: testSingleColumn took 0.002 sec
+Testcase: testBadQuote took 0 sec
+Testcase: testBadTypes took 0.003 sec
+Testcase: testEmpty took 0 sec
+Testcase: testSingleRow took 0 sec
+Testcase: testMultipleRows took 0 sec
+Testcase: testWithTypes took 0.002 sec
+Testcase: testQuotes took 0 sec
+Testcase: testShortestPathOnMediumExample took 0.054 sec
+Testcase: testShortestPathOnSingleEdgeGraph took 0.001 sec
+Testcase: testMaxFlowOnMediumExample took 0.006 sec
+Testcase: testLeastCostPathOnSingleTriangleGraph took 0.002 sec
+Testcase: testShortestPathOnSingleNodeGraph took 0 sec
+Testcase: testLeastCostPathOnMediumExample took 0 sec
+Testcase: testMaxFlowOnSingleEdgeGraph took 0 sec
+Testcase: testLeastCostPathOnSingleEdgeGraph took 0 sec
+Testcase: testLeastCostPathOnMediumExample2 took 0.003 sec
+Testcase: testLeastCostPathOnSingleNodeGraph took 0.001 sec
+Testcase: testMaxFlowWithBacktracking took 0.001 sec
+Testcase: testFindFeasibleBoundedFlow took 0.009 sec
+Testcase: testFindFeasibleDemandFlow took 0.002 sec

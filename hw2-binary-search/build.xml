@@ -1,0 +1,83 @@
+<project name="HW1" basedir=".">
+
+  <property name="penalty" value="0" />
+
+
+  <path id="libraries">
+    <fileset dir="lib">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <path id="classpath">
+    <pathelement location="bin"/>
+    <fileset dir="lib">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties"
+           classpathref="classpath"/>
+
+
+  <target name="clean" description="Deletes all generated files.">
+    <delete failonerror="false">
+      <fileset dir="bin" includes="**/*"></fileset>
+      <fileset dir="test-reports" includes="**/*"></fileset>
+    </delete>
+  </target>
+
+  <target name="build" description="Compiles the source files.">
+    <mkdir dir="bin"/>
+    <javac srcdir="src"
+           destdir="bin"
+           debug="true"
+           includes="**/*.java"
+           includeantruntime="false">
+      <compilerarg value="-Xlint"/>
+      <classpath refid="libraries"/>
+    </javac>
+  </target>
+
+  <target name="test" depends="build" description="Runs the tests.">
+    <mkdir dir="test-reports"/>
+    <junit printsummary="yes" dir="." fork="on" forkmode="once">
+      <classpath refid="classpath"/>
+      <assertions><enable/></assertions>
+      <formatter type="plain"/>
+      <test name="cse417.AllTests" todir="test-reports"></test>
+    </junit>
+  </target>
+
+  <target name="train" description="Runs the program in training mode.">
+    <java classname="cse417.TeamModeler" dir="." fork="true"
+          classpathref="classpath">
+      <assertions><enable/></assertions>
+      <arg value="--train"/>
+      <arg value="data/drives-2016-no-turnovers.csv"/>
+    </java>
+  </target>
+
+  <target name="run" description="Runs the program in prediction mode.">
+    <if><isset property="num-nonzero"/>
+      <then>
+        <java classname="cse417.TeamModeler" dir="." fork="true"
+              classpathref="classpath">
+          <assertions><enable/></assertions>
+          <arg value="--num-nonzero=${num-nonzero}"/>
+          <arg value="--verbose"/>
+          <arg value="data/drives-2017-no-turnovers.csv"/>
+        </java>
+      </then>
+      <else>
+        <java classname="cse417.TeamModeler" dir="." fork="true"
+              classpathref="classpath">
+          <assertions><enable/></assertions>
+          <arg value="--penalty=${penalty}"/>
+          <arg value="data/drives-2017-no-turnovers.csv"/>
+        </java>
+      </else>
+    </if>
+  </target>
+
+</project>
